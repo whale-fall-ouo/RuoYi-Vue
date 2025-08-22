@@ -10,8 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "ruoyi")
-public class RuoYiConfig
-{
+public class RuoYiConfig {
     /** 项目名称 */
     private String name;
 
@@ -28,7 +27,7 @@ public class RuoYiConfig
     private static boolean addressEnabled;
 
     /** 验证码类型 */
-    private static String captchaType;
+    private static CaptchaType captchaType;
 
     public String getName()
     {
@@ -80,14 +79,25 @@ public class RuoYiConfig
         RuoYiConfig.addressEnabled = addressEnabled;
     }
 
-    public static String getCaptchaType() {
+    public static CaptchaType getCaptchaType() {
         return captchaType;
     }
 
-    public void setCaptchaType(String captchaType) {
+    public void setCaptchaType(CaptchaType captchaType) {
         RuoYiConfig.captchaType = captchaType;
     }
 
+    /**
+     * 验证码类型枚举
+     */
+    public enum CaptchaType {
+        MATH, CHAR;
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase();
+        }
+    }
     /**
      * 获取导入上传路径
      */
